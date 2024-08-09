@@ -1,0 +1,24 @@
+---
+- name: Demonstrate the "in" keyword
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    supported_distros:
+      - RedHat
+      - Fedora
+  tasks:
+    - name: Install httpd using dnf, where supported
+      ansible.builtin.dnf:
+        name: http
+        state: present
+      # when: ansible_facts['distribution'] == "RedHat" or ansible_facts['distribution'] == "Fedora"
+      # when: ansible_facts['distribution_version'] == "9.0" and ansible_facts['kernel'] == "5.14.0-70.13.1.el9_0.x86_64"
+      # when:
+      #   - ansible_facts['distribution_version'] == "9.0"
+      #   - ansible_facts['kernel'] == "5.14.0-70.13.1.el9_0.x86_64"
+      # when: >
+      #     ( ansible_facts['distribution'] == "RedHat" and
+      #       ansible_facts['distribution_major_version'] == "9" )
+      #     or
+      #     ( ansible_facts['distribution'] == "Fedora" and
+      #     ansible_facts['distribution_major_version'] == "34" )

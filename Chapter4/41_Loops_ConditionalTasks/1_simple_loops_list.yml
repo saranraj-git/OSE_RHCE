@@ -1,0 +1,21 @@
+---
+- name: Loop Register Test
+  gather_facts: no
+  hosts: localhost
+  tasks:
+  - name: Postfix is running
+    ansible.builtin.service:
+      name: postfix
+      state: started
+  - name: Dovecot is running
+    ansible.builtin.service:
+      name: dovecot
+      state: started
+      
+  # - name: Postfix and Dovecot are running
+  #   ansible.builtin.service:
+  #     name: "{{ item }}"
+  #     state: started
+  #   loop:
+  #     - postfix
+  #     - dovecot

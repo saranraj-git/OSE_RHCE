@@ -1,0 +1,14 @@
+---
+- name: Demonstrate the "in" keyword
+  hosts: localhost
+  gather_facts: yes
+  vars:
+    supported_distros:
+      - RedHat
+      - Fedora
+  tasks:
+    - name: Install httpd using dnf, where supported
+      ansible.builtin.dnf:
+        name: http
+        state: present
+      when: ansible_facts['distribution'] in supported_distros

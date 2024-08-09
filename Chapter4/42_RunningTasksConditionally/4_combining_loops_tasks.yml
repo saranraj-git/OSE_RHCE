@@ -1,0 +1,10 @@
+---
+- name: Loop Register Test
+  hosts: localhost
+  tasks:
+  - name: install mariadb-server if enough space on root
+    ansible.builtin.dnf:
+      name: mariadb-server
+      state: latest
+    loop: "{{ ansible_facts['mounts'] }}"
+    when: item['mount'] == "/" and item['size_available'] > 300000000

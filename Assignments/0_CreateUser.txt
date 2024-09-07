@@ -1,0 +1,3 @@
+1. Create a user on ur name and ensure that the user is having password less SSH.
+2. User must be having sudo privileges on the remote machines.
+3. While running sudo commands on remote machines, user must not be prompted for password.
